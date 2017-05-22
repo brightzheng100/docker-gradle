@@ -10,7 +10,9 @@ RUN cd /usr/lib \
  && echo "$GRADLE_SHA gradle-bin.zip" | sha256sum -c - \
  && unzip "gradle-bin.zip" \
  && ln -s "/usr/lib/gradle-${GRADLE_VERSION}/bin/gradle" /usr/bin/gradle \
- && rm "gradle-bin.zip"
+ && rm "gradle-bin.zip" \
+ && curl -L "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx \
+ && mv cf /usr/local/bin
 
 # Set Appropriate Environmental Variables
 ENV GRADLE_HOME /usr/lib/gradle
